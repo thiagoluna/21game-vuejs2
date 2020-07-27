@@ -33,7 +33,7 @@
             </div>
             <div :class="['col-6', playerActived == 2 ? 'active' : '']">
                 <img src='assets/player2.png' alt="Player 2">
-                <p>Player 1 <span class="badge badge-secondary">{{numberHistoricPlayer2}}</span></p>
+                <p>Player 2 <span class="badge badge-secondary">{{numberHistoricPlayer2}}</span></p>
                 <p>
                     Score: {{player2.points}}<br/>
                     <label v-for="point2 in player2.historic">
@@ -42,7 +42,6 @@
                 </p>
             </div>
             <div class="controls col">
-                <br/>
                 <button @click.prevent="changePlayer" class="btn btn-success">Next Player</button>
                 <a href="#" @click.prevent="gameOver" class="btn btn-primary">Finish</a>
                 <a href="#" @click.prevent="resetGame" class="btn btn-danger">Restart</a>
@@ -59,9 +58,9 @@
                 <br/>Click to choose one card
             </div>
             <div class="col-6">
-
+                <div v-if="cardSelected != ''">
                     <img :src="urlCard" class="card">
-
+                </div>
             </div>
         </div>
     </div>
@@ -90,7 +89,7 @@
                 },
                 resetGame () {
                     this.playerActived = 1
-                    this.urlCard= ''
+                    this.cardSelected = ''
                     this.player1.points = this.player2.points = 0
                     this.player1.historic = []
                     this.player2.historic = []
@@ -128,7 +127,7 @@
                     let vs = this
                     setTimeout(function () {
                         vs.resetGame()
-                    }, 3000)
+                    }, 2000)
                 }
             },
             computed: {
