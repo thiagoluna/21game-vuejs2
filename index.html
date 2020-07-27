@@ -17,6 +17,7 @@
     <div class="container text-center" id="app">
         <h1 class="title">21 Game with Vue JS 2</h1>
         <h4>The first player to reach 21 points will be the winner.</h4>
+        <h4>More than 21 loses.</h4>
         <br/>
         <div class="row text-center">
             <div :class="['col-6', playerActived == 1 ? 'active' : '']">
@@ -42,7 +43,7 @@
             </div>
             <div class="controls col">
                 <br/>
-                <button @click.prevent="changePlayer" class="btn btn-success" :class="{disabled : isDisabled}">Next Player</button>
+                <button @click.prevent="changePlayer" class="btn btn-success">Next Player</button>
                 <a href="#" @click.prevent="gameOver" class="btn btn-primary">Finish</a>
                 <a href="#" @click.prevent="resetGame" class="btn btn-danger">Restart</a>
             </div>
@@ -71,7 +72,6 @@
         new Vue ({
             el: '#app',
             data: {
-                isDisabled: false,
                 playerActived: 1,
                 player1: {
                     points: 0,
@@ -90,10 +90,10 @@
                 },
                 resetGame () {
                     this.playerActived = 1
-                    this.urlCard= 'assets/baralho-cartas.png'
+                    this.urlCard= ''
                     this.player1.points = this.player2.points = 0
-                    this.player1.historic = this.player2.historic = []
-                    this.isDisabled = false;
+                    this.player1.historic = []
+                    this.player2.historic = []
                 },
                 selectedCard () {
                     this.cardSelected = ''
