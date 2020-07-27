@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>21 Game Vue JS 2</title>
+
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
+
+    <!-- Bootstrat -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container text-center" id="app">
+        <h1 class="title">21 Game with Vue JS 2</h1>
+        <h4>The first player to reach 21 points will be the winner.</h4>
+        <br/>
+        <div class="row text-center">
+            <div :class="['col-6', playerActived == 1 ? 'active' : '']">
+                <img src="assets/player1.png" alt="Player 1">
+                <p>Player 1 <span class="badge badge-secondary">{{numberHistoricPlayer1}}</span></p>
+                <p>
+                    Score: {{player1.points}}<br/>
+                    <label v-for="point1 in player1.historic">
+                        {{point1}}+
+                    </label>
+                </p>
+
+            </div>
+            <div :class="['col-6', playerActived == 2 ? 'active' : '']">
+                <img src='assets/player2.png' alt="Player 2">
+                <p>Player 1 <span class="badge badge-secondary">{{numberHistoricPlayer2}}</span></p>
+                <p>
+                    Score: {{player2.points}}<br/>
+                    <label v-for="point2 in player2.historic">
+                        {{point2}}+
+                    </label>
+                </p>
+            </div>
+            <div class="controls col">
+                <br/>
+                <button @click.prevent="changePlayer" class="btn btn-success" :class="{disabled : isDisabled}">Next Player</button>
+                <a href="#" @click.prevent="gameOver" class="btn btn-primary">Finish</a>
+                <a href="#" @click.prevent="resetGame" class="btn btn-danger">Restart</a>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-6">
+                <a href="#" @click.prevent="selectedCard">
+                    <img src="assets/baralho-cartas.png" alt="Deck" class="cards">
+                </a>
+                <br/>Click to choose one card
+            </div>
+            <div class="col-6">
+
+                    <img :src="urlCard" class="card">
+
+            </div>
+        </div>
+    </div>
+
+    <!-- versão de desenvolvimento, inclui avisos úteis no console  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue ({
+            el: '#app',
+            data: {
+                isDisabled: false,
+                playerActived: 1,
+                player1: {
+                    points: 0,
+                    historic: []
+                },
+                player2: {
+                    points: 0,
+                    historic: []
+                },
+                cardSelected: '',
+                urlCard: ''
+            },
+            methods: {
+                changePlayer () {
+                    this.playerActived = this.playerActived == 1 ? 2 : 1
+                },
+                resetGame () {
+                    this.playerActived = 1
+                    this.urlCard= 'assets/baralho-cartas.png'
+                    this.player1.points = this.player2.points = 0
+                    this.player1.historic = this.player2.historic = []
+                    this.isDisabled = false;
+                },
+                selectedCard () {
+                    this.cardSelected = ''
+                    this.cardSelected = Math.floor((Math.random() * 13) + 1)
+
+                    if (this.playerActived == 1) {
+                        this.player1.points += this.cardSelected
+                        this.player1.historic.push(this.cardSelected)
+                    } else {
+                        this.player2.points += this.cardSelected
+                        this.player2.historic.push(this.cardSelected)
+                    }
+
+                    if (this.player1.points >= 21 || this.player2.points >= 21 ) {
+                        this.gameOver()
+                    }
+
+                    this.urlCard = 'assets/cards/' + this.cardSelected + '.png'
+                    console.log(this.urlCard, this.player1.points, this.player2.points)
+                },
+                gameOver (event) {
+                    if (this.player1.points <= 21 && this.player1.points > this.player2.points)
+                        alert('Player 1 Won!')
+                    else if(this.player2.points <= 21 && this.player2.points > this.player1.points)
+                        alert('Player 2 Won!')
+                    else if (this.player1.points > 21)
+                        alert('Player 2 Won!')
+                    else if (this.player2.points > 21)
+                        alert('Player 1 Won!')
+                    else alert('Tied!')
+
+                    let vs = this
+                    setTimeout(function () {
+                        vs.resetGame()
+                    }, 3000)
+                }
+            },
+            computed: {
+                numberHistoricPlayer1 () {
+                    return this.player1.historic.length
+                },
+                numberHistoricPlayer2 () {
+                    return this.player2.historic.length
+                }
+            }
+        });
+    </script>
+</body>
+</html>
