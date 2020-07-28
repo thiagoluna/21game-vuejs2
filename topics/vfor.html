@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue JS 2 - Especializa TI</title>
+
+    <style>
+        .active{background: aquamarine;}
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>{{title}}</h1>
+        <p>{{description}}</p>
+        <ul>
+            <li v-for="item in 10">
+                {{item}}
+            </li>
+        </ul>
+
+        <ul>
+            <li v-for="item in products">
+                {{item}}
+            </li>
+        </ul>
+
+        <ul>
+            <li v-for="(item, index) in tasks" :class="{active: item.isActive}">
+                {{index}} -> {{item.name}}
+            </li>
+        </ul>
+    </div>
+
+    <!-- versão de desenvolvimento, inclui avisos úteis no console  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue ({
+           el: '#app',
+           data: {
+               title: "v-for",
+               description: "Loop de repetição v-for",
+               products: [
+                   'a', 'b', 'c', 'd', 'e', 'f'
+               ],
+               tasks: [
+                   {id: 1, name: 'Task 1', isActive: false},
+                   {id: 2, name: 'Task 2', isActive: false},
+                   {id: 3, name: 'Task 3', isActive: true},
+                   {id: 4, name: 'Task 4', isActive: false},
+                   {id: 5, name: 'Task 5', isActive: false},
+               ]
+           }
+        });
+    </script>
+
+</body>
+</html>

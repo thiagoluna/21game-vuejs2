@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue JS 2 - Especializa TI</title>
+
+    <style>
+        .active{background: lightgray}
+        .no-active{background: aquamarine}
+        .default{background: bisque}
+    </style>
+</head>
+<body>
+    <div id="app" :class="{active : isActive}">
+        <h1>{{title}}</h1>
+        <button @click="isActive = !isActive">Alterar class</button>
+
+        <div :class="isActive ? 'active' : 'no-active'">
+            Exemplo 2
+        </div>
+
+        <div :class="['default', isActive ? 'active' : 'no-active']">
+            Exemplo 3
+        </div>
+
+        <div :style="{display: ['weblit-flex', '-moz-flex', 'flex']}">
+            Exemplo 5
+        </div>
+    </div>
+
+    <!-- versão de desenvolvimento, inclui avisos úteis no console  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue ({
+           el: '#app',
+           data: {
+               title: "Styles",
+               isActive: true
+           }
+        });
+    </script>
+
+</body>
+</html>

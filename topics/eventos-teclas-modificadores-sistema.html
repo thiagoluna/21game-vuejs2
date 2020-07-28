@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos - Teclas Modificadores Sistema Vue JS 2 - Especializa TI</title>
+</head>
+<body>
+<div id="app">
+    <h1 v-once>{{name}}</h1>
+    <div @click.ctrl="testEvent">
+        Clique Ctrl Aqui.
+    </div>
+    <br/>
+    <div @click.alt.exact="testEvent">
+        Clique Alt Aqui.
+    </div>
+    <br/>
+    <div @click.meta="testEvent">
+        Clique Aqui para abrir Menu Inicial.
+    </div>
+
+    <div>
+        <p>
+            <a :href=url @click.prevent="testEvent" target="_blank">Link</a>
+        </p>
+        <p>
+            <button @click.once="testEvent">Send</button>
+        </p>
+    </div>
+</div>
+
+<!-- versão de desenvolvimento, inclui avisos úteis no console  -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue ({
+        el: '#app',
+        data: {
+            name: "Eventos - Teclas Modificadores Sistema Vue JS ",
+            description: "Eventos",
+            valueText: '',
+            url: "http://www.vuejs.org"
+        },
+        methods: {
+            testEvent () {
+                //event.preventDefault()
+                alert('Evento')
+            },
+
+        }
+    });
+</script>
+
+</body>
+</html>

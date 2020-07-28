@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue JS 2 - Especializa TI</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{title}}</h1>
+        <button @click="count++">Aumentar</button>
+        <p>{{count}}</p>
+    </div>
+
+    <!-- versão de desenvolvimento, inclui avisos úteis no console  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue ({
+           el: '#app',
+           data: {
+               title: "Watch",
+               count: 0
+           },
+            watch: {
+               count: function (value) {
+                   var vm = this
+                   setTimeout(function () {
+                        vm.count = 0
+                   }, 3000)
+               }
+            }
+        });
+    </script>
+
+</body>
+</html>

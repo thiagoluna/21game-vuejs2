@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue JS 2 - Especializa TI</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{title}}</h1>
+        <p>{{description}}</p>
+        <div v-if="number < 112">
+            {{texto}}
+        </div>
+
+        <div v-if="isActive">
+            {{texto2}}
+        </div>
+        <div v-else>
+            {{texto3}}
+        </div>
+
+        <div v-show="isActive">
+            {{texto4}}
+        </div>
+
+
+    </div>
+
+    <!-- versão de desenvolvimento, inclui avisos úteis no console  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue ({
+           el: '#app',
+           data: {
+               title: "Renderização Condicional",
+               description: "v-if não renderiza html - V-Show renderiza e deixa hidde",
+               number: 12,
+               isActive: false,
+               texto: 'Texto Exibodo',
+               texto2: 'Texto 2 Exibodo',
+               texto3: 'Texto 3 Exibodo',
+               texto4: 'V-Show',
+           }
+        });
+    </script>
+
+</body>
+</html>

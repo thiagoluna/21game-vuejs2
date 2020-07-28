@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-Once Vue JS 2 - Especializa TI</title>
+</head>
+<body>
+<div id="app">
+    <h1 v-once>{{name}}</h1>
+    <p>{{description}}</p>
+    <input type="text" v-model:value=name>
+    <p>{{name}}</p>
+</div>
+
+<!-- versão de desenvolvimento, inclui avisos úteis no console  -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue ({
+        el: '#app',
+        data: {
+            name: "V-Once Vue JS ",
+            description: "Deixar o valor da propriedade Imutável"
+        }
+    });
+</script>
+
+</body>
+</html>

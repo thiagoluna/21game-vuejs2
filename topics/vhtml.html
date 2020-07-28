@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-Once Vue JS 2 - Especializa TI</title>
+</head>
+<body>
+<div id="app">
+    <h1>{{title}}</h1>
+    <div v-html="description"></div>
+</div>
+
+<!-- versão de desenvolvimento, inclui avisos úteis no console  -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue ({
+        el: '#app',
+        data: {
+            title: "V-HTML Vue JS ",
+            description: "<strong>vhtml</strong> executa tags html no valor da propriedade.<br/> " +
+                "Ex.: <strong>strong</strong>"
+        }
+    });
+</script>
+
+</body>
+</html>

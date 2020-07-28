@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Two Awy Data Bind - VUe JS</title>
+</head>
+<body>
+
+<div id="app">
+    <h1>{{title}}</h1>
+    <h3>1-Way DataBind</h3>
+    <input type="text" :value=name>
+    <p>{{name}}</p>
+    <p>
+        <h3>2-Way DataBind</h3>
+        <p>{{description}}</p>
+        <input type="text" v-model:value=name>
+        <p>{{name}}</p>
+    </p>
+
+</div>
+
+<!-- versão de desenvolvimento, inclui avisos úteis no console  -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue ({
+        el: '#app',
+        data: {
+            title: "Two Way Data Bind - VUe JS",
+            description: "Atualiza a propriedade do elemento em todos os lugares.",
+            name: "EspecializaTi + Vue"
+        }
+    });
+</script>
+
+</body>
+</html>
