@@ -7,4 +7,7 @@ More than 21 loses.
 # Resources
 - 2way Databind
 - Methods
-- Computed Methods
+- Computed Methods  
+  
+# Let's Play
+You can test it by [clicking here](http://progtisolucoes.com.br/21game/)
